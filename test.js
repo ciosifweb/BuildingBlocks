@@ -39,7 +39,25 @@ describe('Listing cities on /cities', function(){
     it('Returns initial cities', function(done) {
         request(app)
         .get('/cities')
-        .expect(JSON.stringify(["Lotopia", "Caspiana", "Indigo"]), done);
+        .expect(JSON.stringify({"Lotopia": 'City of lights',
+                    "Caspiana": 'Best place to live',
+                    "Indigo": 'Violet city (sort of)'}), done);
+    });
+});
+
+describe('Creating new cities', function() {
+    it ('returns 201 on city creation', function(done) {
+        request(app)
+        .post('/cities')
+        .send("name=Springfield&description=Where+the+simpsons+live")
+        .expect(201, done);
+    });
+    
+    it("returns a new city", function(done) {
+        request(app)
+        .post('/cities')
+        .send("name=Springfield&description=Where+the+simpsons+live")
+        .expect(/springfield/i, done);
     });
 });
 
