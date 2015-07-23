@@ -17,7 +17,9 @@ $(function(){
       $('.alert').show();
     })
     .success(function(cityName){
-      appendToList([cityName]);
+      var placeholder = {};
+      placeholder[cityName] = "placeholder";
+      appendToList(placeholder);
       form.trigger('reset');
     });
   });
@@ -27,8 +29,8 @@ $(function(){
     var content, city;
     for(var i in cities){
       city = cities[i];
-      content = '<a href="/cities/'+city+'">'+city+'</a>'+ // + // example on how to serve static images
-        ' <a href="#" data-city="'+city+'">'+
+      content = '<a href="/cities/'+i+'">'+i+'</a>'+ // + // example on how to serve static images
+        ' <a href="#" data-city="'+i+'">'+
         '<img src="delete.png" width="15px"></a>';
       list.push($('<li>', { html: content }));
     }
