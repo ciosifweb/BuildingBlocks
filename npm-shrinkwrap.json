@@ -4,7 +4,7 @@
   "dependencies": {
     "body-parser": {
       "version": "1.13.2",
-      "from": "body-parser@",
+      "from": "https://registry.npmjs.org/body-parser/-/body-parser-1.13.2.tgz",
       "resolved": "https://registry.npmjs.org/body-parser/-/body-parser-1.13.2.tgz",
       "dependencies": {
         "bytes": {
@@ -113,7 +113,7 @@
     },
     "express": {
       "version": "4.13.1",
-      "from": "express@",
+      "from": "https://registry.npmjs.org/express/-/express-4.13.1.tgz",
       "resolved": "https://registry.npmjs.org/express/-/express-4.13.1.tgz",
       "dependencies": {
         "accepts": {
@@ -347,6 +347,11 @@
           "resolved": "https://registry.npmjs.org/utils-merge/-/utils-merge-1.0.0.tgz"
         }
       }
+    },
+    "redis": {
+      "version": "0.12.1",
+      "from": "redis@",
+      "resolved": "https://registry.npmjs.org/redis/-/redis-0.12.1.tgz"
     }
   }
 }
