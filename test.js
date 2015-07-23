@@ -61,6 +61,13 @@ describe('Creating new cities', function() {
         .send("name=Springfield&description=Where+the+simpsons+live")
         .expect(/springfield/i, done);
     });
+    
+    it ("Validates city data before deletion", function(done) {
+        request(app)
+        .post('/cities')
+        .send("name=&description=")
+        .expect(400, done);
+    });
 });
 
 describe('Delete cities', function(){
@@ -81,6 +88,37 @@ describe('Delete cities', function(){
             if (error) throw error;
             done();
         });
+    });
+    
+    
+});
+
+describe('Shows city info', function(){
+    
+    before(function() {
+        client.hset('cities', 'Banana', 'a tasty city');
+    });
+    
+    after(function(){
+        client.flushdb();
+    });
+    
+    it ("Returns 200 status code", function(done) {
+        request(app)
+        .get('/cities/Banana')
+        .expect(200, done);
+    });
+    
+    it ("Returns in HTML format", function(done) {
+        request(app)
+        .get('/cities/Banana')
+        .expect("Content-Type", /html/, done);
+    });
+    
+    it ("Returns information about the city", function(done) {
+        request(app)
+        .get('/cities/Banana')
+        .expect(/tasty/, done);
     });
 });
 
