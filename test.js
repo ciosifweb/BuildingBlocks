@@ -63,3 +63,24 @@ describe('Creating new cities', function() {
     });
 });
 
+describe('Delete cities', function(){
+    
+    before(function(){
+        client.hset('cities', 'Banana', 'A tasty fruit');
+    });
+    after(function() {
+        client.flushdb();
+    });
+    
+    
+    it ("Returns a 204 code on delete", function(done) {
+        request(app)
+        .delete('/cities/Banana')
+        .expect(204)
+        .end(function(error) {
+            if (error) throw error;
+            done();
+        });
+    });
+});
+
